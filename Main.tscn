@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Ground.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Enermy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Main.gd" type="Script" id=4]
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Enermy" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1064, 504 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 472, 488 )
+
+[node name="Ground" parent="." instance=ExtResource( 2 )]
