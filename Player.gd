@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal jump
+
 onready var _sprite = $Sprite
 onready var _idle_img = preload("res://img/Player_Idle.png")
 onready var _jump_img = preload("res://img/Player_Jump.png")
@@ -13,14 +15,12 @@ var jumpForce := 600
 var jumping := false
 
 
-
 func _physics_process(delta) -> void:
 	time += delta
 	if jumping and is_on_floor():
 		jumping = false
 	if time > 1:
 		_sprite.texture = _idle_img
-	print(time)
 	vel.y += gravity * delta
 	
 	move_and_slide(vel, Vector2(0, -1))
@@ -42,6 +42,7 @@ func _jump() -> void:
 	time = 0.0
 	_sprite.texture = _jump_img
 	vel.y = -jumpForce
+	emit_signal("jump")
 
 func die() -> void:
 	get_tree().reload_current_scene()
